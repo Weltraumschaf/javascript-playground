@@ -3,8 +3,9 @@
     var CANVAS_WIDTH = 640,
         CANVAS_HEIGHT = 360,
         RECTANGLE_WIDTH = 32,
-        RECTANGLE_HEIGHT = 32,
-        HORIZONTAL_ACCELERATION = 0.7,
+        RECTANGLE_HEIGHT = 48,
+        HORIZONTAL_ACCELERATION = 0.9,
+        VERTICAL_DECELERATION = 50,
         GRAVITY = 1.5,
         FRICTION = 0.9;
 
@@ -49,7 +50,7 @@
 
     loop = function () {
         if (controller.up && rectangle.jumping == false) {
-            rectangle.y_velocity -= 20;
+            rectangle.y_velocity -= VERTICAL_DECELERATION;
             rectangle.jumping = true;
         }
 
@@ -68,9 +69,9 @@
         rectangle.y_velocity *= FRICTION;
 
         // If rectangle is faling below floor line.
-        if (rectangle.y > CANVAS_HEIGHT - 16 - RECTANGLE_HEIGHT) {
+        if (rectangle.y > CANVAS_HEIGHT - RECTANGLE_HEIGHT/2 - RECTANGLE_HEIGHT) {
             rectangle.jumping = false;
-            rectangle.y = CANVAS_HEIGHT - 16 - RECTANGLE_HEIGHT;
+            rectangle.y = CANVAS_HEIGHT - RECTANGLE_HEIGHT/2 - RECTANGLE_HEIGHT;
             rectangle.y_velocity = 0;
         }
 
@@ -90,8 +91,8 @@
         context.strokeStyle = "#202830";
         context.lineWidth = 4;
         context.beginPath();
-        context.moveTo(0, CANVAS_HEIGHT - 16);
-        context.lineTo(CANVAS_WIDTH, CANVAS_HEIGHT - 16);
+        context.moveTo(0, CANVAS_HEIGHT - RECTANGLE_HEIGHT/2);
+        context.lineTo(CANVAS_WIDTH, CANVAS_HEIGHT - RECTANGLE_HEIGHT/2);
         context.stroke();
 
         // Call update when the browser is ready to draw again.
