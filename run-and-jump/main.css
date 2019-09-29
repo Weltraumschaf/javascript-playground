@@ -1,0 +1,12 @@
+body {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: whitesmoke;
+}
+#canvas {
+    background: #fefefe;
+    border: thin solid lightgray;
+    -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
