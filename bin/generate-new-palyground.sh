@@ -49,6 +49,7 @@ cat << EOF > "${playgroundDir}/index.html"
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
         <title>${playgoundName}</title>
         <link rel="stylesheet" type="text/css" href="main.css"/>
     </head>
