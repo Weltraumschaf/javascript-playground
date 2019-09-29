@@ -3,7 +3,10 @@
     var CANVAS_WIDTH = 640,
         CANVAS_HEIGHT = 360,
         RECTANGLE_WIDTH = 32,
-        RECTANGLE_HEIGHT = 32;
+        RECTANGLE_HEIGHT = 32,
+        HORIZONTAL_ACCELERATION = 0.7,
+        GRAVITY = 1.5,
+        FRICTION = 0.9;
 
     var context, controller, rectangle, loop;
 
@@ -51,18 +54,18 @@
         }
 
         if (controller.left) {
-            rectangle.x_velocity -= 0.5;
+            rectangle.x_velocity -= HORIZONTAL_ACCELERATION;
         }
 
         if (controller.right) {
-            rectangle.x_velocity += 0.5;
+            rectangle.x_velocity += HORIZONTAL_ACCELERATION;
         }
 
-        rectangle.y_velocity += 1.5; // gravity
+        rectangle.y_velocity += GRAVITY;
         rectangle.x += rectangle.x_velocity;
         rectangle.y += rectangle.y_velocity;
-        rectangle.x_velocity *= 0.9; // friction
-        rectangle.y_velocity *= 0.9; // friction
+        rectangle.x_velocity *= FRICTION;
+        rectangle.y_velocity *= FRICTION;
 
         // If rectangle is faling below floor line.
         if (rectangle.y > CANVAS_HEIGHT - 16 - RECTANGLE_HEIGHT) {
