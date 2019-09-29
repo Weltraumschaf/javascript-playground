@@ -1,16 +1,21 @@
-(function() {
+(function () {
+    // constants
+    var CANVAS_WIDTH = 640,
+        CANVAS_HEIGHT = 360,
+        RECTANGLE_WIDTH = 32,
+        RECTANGLE_HEIGHT = 32;
 
     var context, controller, rectangle, loop;
 
     context = document.querySelector("canvas").getContext("2d");
 
-    context.canvas.height = 180;
-    context.canvas.width = 320;
+    context.canvas.width = CANVAS_WIDTH;
+    context.canvas.height = CANVAS_HEIGHT;
 
     rectangle = {
-        height: 32,
-        width: 32,
-        x: 144,
+        width: RECTANGLE_WIDTH,
+        height: RECTANGLE_HEIGHT,
+        x: CANVAS_WIDTH / 2 - RECTANGLE_WIDTH / 2,
         x_velocity: 0,
         y: 0,
         y_velocity: 0,
@@ -60,21 +65,21 @@
         rectangle.y_velocity *= 0.9; // friction
 
         // If rectangle is faling below floor line.
-        if (rectangle.y > 180 - 16 - 32) {
+        if (rectangle.y > CANVAS_HEIGHT - 16 - RECTANGLE_HEIGHT) {
             rectangle.jumping = false;
-            rectangle.y = 180 - 16 - 32;
+            rectangle.y = CANVAS_HEIGHT - 16 - RECTANGLE_HEIGHT;
             rectangle.y_velocity = 0;
         }
 
         // If rectangle is going off the left of the screen.
-        if (rectangle.x < -32) {
-            rectangle.x = 320;
-        } else if (rectangle.x > 320) {
-            rectangle.x = -32;
+        if (rectangle.x < -RECTANGLE_WIDTH) {
+            rectangle.x = CANVAS_WIDTH;
+        } else if (rectangle.x > CANVAS_WIDTH) {
+            rectangle.x = -RECTANGLE_WIDTH;
         }
 
         context.fillStyle = "#202020";
-        context.fillRect(0, 0, 320, 180);
+        context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         context.fillStyle = "#ff0000";
         context.beginPath();
         context.rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
@@ -82,8 +87,8 @@
         context.strokeStyle = "#202830";
         context.lineWidth = 4;
         context.beginPath();
-        context.moveTo(0, 164);
-        context.lineTo(320, 164);
+        context.moveTo(0, CANVAS_HEIGHT - 16);
+        context.lineTo(CANVAS_WIDTH, CANVAS_HEIGHT - 16);
         context.stroke();
 
         // Call update when the browser is ready to draw again.
