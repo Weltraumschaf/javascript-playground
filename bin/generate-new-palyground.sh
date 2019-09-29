@@ -50,7 +50,7 @@ cat << EOF > "${playgroundDir}/index.html"
 <html>
     <head>
         <title>${playgoundName}</title>
-         <link rel="stylesheet" type="text/css" href="main.css"/>
+        <link rel="stylesheet" type="text/css" href="main.css"/>
     </head>
     <body>
         <canvas id="canvas"></canvas>
